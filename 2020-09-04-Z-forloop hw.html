@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>forloop hw</title>
+    <style>
+        #gameCanvas {
+            width: 900px;
+            height: 900px;
+            background-color: black;
+            margin: auto;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-content: space-between;
+        }
+
+        .menu {
+            position: absolute;
+            left: 10px;
+            top: 30%;
+            transform: translateY(-50%);
+        }
+
+        .btn {
+            width: 100px;
+            padding: 20px;
+            background-color: burlywood;
+            font-weight: 900;
+            font-size: 24px;
+            text-align: center;
+            transition: 0.5s;
+            cursor: pointer;
+        }
+
+        .btn:hover {
+            background-color: rgb(128, 102, 68);
+            color: white;
+        }
+
+        .btn:active {
+            background-color: rgb(37, 29, 20);
+        }
+
+        .box {
+            background-color: burlywood;
+            transition: 0.2s;
+        }
+
+        .box.active {
+            background-color: red;
+        }
+
+        /* 3x3 */
+        .box-sm {
+            width: 290px;
+            height: 290px;
+        }
+
+        /* 6x6 */
+        .box-md {
+            width: 145px;
+            height: 145px;
+        }
+
+        /* 9x9 */
+        .box-lg {
+            width: 95px;
+            height: 95px;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="gameCanvas">
+    </div>
+    <div class="menu">
+        <div class="btn">3X3</div>
+        <div class="btn">6X6</div>
+        <div class="btn">9X9</div>
+        <div class="btn">清除</div>
+    </div>
+
+    <script>
+        var gameCanvas = document.querySelector('#gameCanvas')
+        var btns = document.querySelectorAll('.btn')
+
+        // 3*3
+        btns[0].onclick = function () {
+            gameCanvas.innerHTML = ''
+            creatBoxes()
+
+            function creatBoxes() {
+                for (let index = 0; index < 9; index++) {
+                    gameCanvas.innerHTML += '<div class="box box-sm"></div>'
+                }
+            }
+
+            var boxes = document.querySelectorAll(".box")
+
+            for (let index = 0; index < boxes.length; index++) {
+                const box = boxes[index];
+
+                box.onclick = function () {
+                    box.classList.add("active")
+                }
+            }
+
+        }
+
+        // 6*6
+        btns[1].onclick = function () {
+            gameCanvas.innerHTML = ''
+            creatBoxes()
+
+            function creatBoxes() {
+                for (let index = 0; index < 36; index++) {
+                    gameCanvas.innerHTML += '<div class="box box-md"></div>'
+                }
+            }
+
+            var boxes = document.querySelectorAll(".box")
+
+            for (let index = 0; index < boxes.length; index++) {
+                const box = boxes[index];
+
+                box.onclick = function () {
+                    box.classList.add("active")
+                }
+            }
+
+        }
+
+        // 9*9
+        btns[2].onclick = function () {
+            gameCanvas.innerHTML = ''
+            creatBoxes()
+
+            function creatBoxes() {
+                for (let index = 0; index < 81; index++) {
+                    gameCanvas.innerHTML += '<div class="box box-lg"></div>'
+                }
+            }
+
+            var boxes = document.querySelectorAll(".box")
+
+            for (let index = 0; index < boxes.length; index++) {
+                const box = boxes[index];
+
+                box.onclick = function () {
+                    box.classList.add("active")
+                }
+            }
+
+            btns[3].onclick = function () {
+                reset()
+            }
+
+        }
+
+        function reset() {
+            gameCanvas.innerHTML = ''
+        }
+
+
+
+
+
+        // 按下3X3、6X6、9X9按鈕可以生成對應數量的box
+        // 按下清除按鈕可把box清空
+        // 當gameCanvas有box存在的時候，按下某box，該box可以變色
+
+
+        // ***** 除了creatBoxes()跟reset()以外，不能再新增其他function *****
+
+
+    </script>
+</body>
+
+</html>
